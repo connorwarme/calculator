@@ -26,3 +26,18 @@ const operate = function(z, a, b) {
         alert(`You must choose an operator!`);
     }
 }
+// give buttons value
+const numberButtons = Array.from(document.querySelectorAll('button.numbers'));
+console.log(numberButtons);
+const giveValue = function(i) {
+    return [i].setAttribute("value", `${i}`)
+}
+numberButtons.forEach(giveValue(i));
+const display = document.querySelector('div.displaybox');
+// working on display value
+// const displayValue = ``;
+// const numbers = document.querySelector('div.numbers');
+// numbers.addEventListener('click', e => {
+// e.button.value = displayValue;
+// display.textContent = `${displayValue}`;
+// })
