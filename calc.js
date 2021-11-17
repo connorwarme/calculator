@@ -116,17 +116,17 @@ backspace.addEventListener('click', e => {
     numberString = numberString.slice(0, -1);
     display.textContent = `${numberString}`;
 })
-// add keyboard support
-const allowedKeyCodes = [61, 173, 88, 190, 191, 8, 13]
-const checkChar = function(event) {
-    for (i=0; i<allowedKeyCodes.length; i++) {
-        if (allowedKeyCodes[i] = event.keyCode) {
-            event.returnValue = true;
-        }
-    }
-    if (event.keyCode >= 48 || event.keyCode <= 58) {
-        event.returnValue = true;
-    } else {
-        event.returnValue = false;
-    }
-}
+// add keyboard support - still learning/working on it
+// const allowedKeyCodes = [61, 173, 88, 190, 191, 8, 13]
+// const checkChar = function(event) {
+//     for (i=0; i<allowedKeyCodes.length; i++) {
+//         if (allowedKeyCodes[i] = event.keyCode) {
+//             event.returnValue = true;
+//         }
+//     }
+//     if (event.keyCode >= 48 || event.keyCode <= 58) {
+//         event.returnValue = true;
+//     } else {
+//         event.returnValue = false;
+//     }
+// }
