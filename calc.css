@@ -4,13 +4,6 @@
     background-repeat: no-repeat;
     background-color: slategrey;
     z-index: -1;
-    min-height: 854px;
-    margin: 0px;
-}
-.fauxtitle {
-    font-size: 50px;
-    opacity: 0;
-    background-color: transparent;
 }
 .title {
     font-size: 75px;
@@ -18,11 +11,14 @@
     z-index: 0;
     background-color: transparent;
 }
+.fauxtitle {
+    width: 28%;
+    opacity: 0;
+}
 .titlecontainer {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-
+    align-items: center;
 }
 .calculatorcontainer {
     background-color: transparent;
@@ -34,19 +30,17 @@
 .displaycontainer {
     order: 1;
     height: 50px;
-    width: 250px;
-    
+    width: 250px;    
 }
 .numberscontainer {
     order: 2;
-    background-color: transparent;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap-reverse;
-    gap: 10px;
-    height: 235px;
+    height: 242px;
     width: 180px;
-    margin-top: 8px;
+    gap: 10px;
+    margin-top: 7px;
 }
 .operatorscontainer {
     order: 3;
@@ -54,7 +48,9 @@
     flex-direction: column-reverse;
     height: 240px;
     width: 60px;
-    gap: 10px;
+    gap: 13px;
+    margin-top: 7px;
+    padding-top: 2px;
 }
 .treycontainer {
     order: 4;
@@ -64,7 +60,9 @@
     justify-content: flex-end;
     height: 240px;
     width: 60px;
-    gap: 10px;
+    gap: 13px;
+    margin-top: 7px;
+    padding-top: 2px;
 }
 .equalscontainer {
     order: 3;
@@ -87,7 +85,6 @@
 }
 #zero {
     width: 110px;
-    border-radius: 15px;
 }
 .period {
     height: 50px;
@@ -96,11 +93,12 @@
     opacity: .7;
     border: 2px solid black;
     border-radius: 15px;
+    font-size: 20px;
+    font-weight: 700;
 }
 .displaybox {
-    border: 1px solid black;
     height: 50px;
-    width: 200px;
+    width: 225px;
     background-color: #92c2c8;
     font-size: 25px;
     font-weight: 700;
@@ -109,7 +107,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 10px;
 }
 .operators {
     height: 50px;
@@ -145,6 +142,63 @@
     flex-grow: 1;
 }
 .body2 {
+    width: 44%;
+}
+.biocontainer {
+    width: 100%;
     display: flex;
-    flex-grow: 1.25;
+    justify-content: center;
+
+}
+.bio {
+    height: 40%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+.bioimage {
+    max-width: 200px;
+    height: auto;
+    border: 5px solid orange;
+    border-radius: 15px;
+}
+.bioimage2 {
+    max-width: 200px;
+    height: auto;
+    border: 5px solid orange;
+    border-radius: 15px;
+}
+.bioinfo {
+    max-width: 50%;
+    background-color: orange;
+    opacity: .8;
+    font-weight: 550;
+    border: 5px solid black;
+    border-radius: 15px;
+}
+.inspired {
+    font-size: 18px;
+    font-weight: 650;
+    padding-left: 15px;
+}
+.footercontainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.footer {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+
+}
+.footer1 {
+    min-width: 600px;
+    font-size: 12px;
+}
+.footer2 {
+    min-width: 600px;
+    font-size: 18px;
+    text-align: end;
 }
