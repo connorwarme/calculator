@@ -47,6 +47,16 @@ numberButtons.forEach(function(part, index) {
     })
 });
 // give operator buttons listener + display value
+const operatorFn = function() {
+    if (tally == ``) {
+    firstValue = `${numberString}`;
+    } else {
+        firstValue = tally;
+        let roundedTally = Math.round(tally * 100) / 100;
+        display.textContent = `${roundedTally}`;
+    };
+    numberString = ``;
+}
 const operators = Array.from(document.querySelectorAll('button.operators'));
 console.log(operators);
 let operatorValue = ``;
@@ -60,11 +70,10 @@ operators.forEach(function(part, index) {
     })
 });
 // give equals button listener + function + display
-const equals = document.querySelector('button.equals');
-equals.addEventListener('click', e => {
+const equalsFn = function() {
     if (operatorValue == `` || firstValue == `` || numberString == `` ) {
         alert(`Calculator needs a number, operator, and a number to function!`);
-    } else if (operatorValue == `divide` && Number(numberString) == 0) {
+    } else if (operatorValue == `/` && Number(numberString) == 0) {
         alert(`Calculator can't compute! (No division by 0.)`)
     } else {
     let solution = operate(operatorValue, Number(firstValue), Number(numberString));
@@ -73,17 +82,20 @@ equals.addEventListener('click', e => {
     display.textContent = `${solutionRounded}`;
     tally = solutionRounded;
     }
-});
+}
+const equals = document.querySelector('button.equals');
+equals.addEventListener('click', equalsFn);
 // give clear button listener + function
-const clear = document.querySelector('button.clear');
-clear.addEventListener('click', e => {
+const clearFn = function() {
     firstValue = ``;
     numberString = ``;
     operatorValue = ``;
     tally = ``;
     checkDecimal(numberString);
     display.textContent = ``;
-})
+}
+const clear = document.querySelector('button.clear');
+clear.addEventListener('click', clearFn);
 // add possibility for decimals
 const period = document.querySelector('button.period');
 period.addEventListener('click', e => {
@@ -101,46 +113,17 @@ const checkDecimal = function(input) {
     }
 }
 // add backspace
-const backspace = document.querySelector('button.backspace');
-backspace.addEventListener('click', e => {
+const backspaceFn = function() {
     numberString = numberString.slice(0, -1);
     display.textContent = `${numberString}`;
-})
-// add keyboard support - still learning/working on it
-const allowedKeyCodes = [61, 173, 88, 190, 191, 8, 13]
-// const checkChar = function(event) {
-//     console.log(event.returnValue);
-//     for (i=0; i<allowedKeyCodes.length; i++) {
-//         if (allowedKeyCodes[i] = event.keyCode) {
-//             event.returnValue = true;
-//         }
-//     }
-//     if (event.keyCode >= 48 || event.keyCode <= 58) {
-//         event.returnValue = true;
-//     } else {
-//         event.returnValue = false;
-//     }
-// }
+}
+const backspace = document.querySelector('button.backspace');
+backspace.addEventListener('click', backspaceFn);
+
+// working on keyboard support
 const numberKeys = function(e) {
         numberString += `${e.key}`;
         numbersFn();
-}
-const operatorFn = function() {
-    if (tally == ``) {
-    firstValue = `${numberString}`;
-    } else {
-        firstValue = tally;
-        let roundedTally = Math.round(tally * 100) / 100;
-        display.textContent = `${roundedTally}`;
-    };
-    numberString = ``;
-}
-
-const checkValue = function() {
-    if (operatorValue !== `` && firstValue !== `` && numberString !== ``) {
-        tally = operate(operatorValue, Number(firstValue), Number(numberString));
-    } else {
-    };
 }
 const operatorKeys = function(e) {
     console.log(e.key);
@@ -153,11 +136,22 @@ document.addEventListener('keydown', e => {
     if (e.key == '/') {
         e.preventDefault();
     }
-    console.log(e.key);
     if (e.key >= 0 && e.key <= 9) {
         numberKeys(e);
     } 
     else if (e.key == '/' || e.key == 'x' || e.key == '-' || e.key == '+') {
         operatorKeys(e);
+    }
+    else if (e.key == 'Backspace') {
+        backspaceFn();
+    }
+    else if (e.key == 'a' || e.key == 'A' || e.key == 'c' || e.key == 'C') {
+        clearFn();
+    }
+    else if (e.key == 'Enter') {
+        equalsFn();
+    }
+    else {
+        e.preventDefault();
     }
 });
