@@ -81,6 +81,15 @@
     font-size: 20px;
     font-weight: 700;
 }
+.numbers:hover, 
+.period:hover, 
+.operators:hover, 
+.equals:hover,
+.clear:hover,
+.backspace:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
 #zero {
     width: 110px;
 }
@@ -100,6 +109,7 @@
     background-color: #92c2c8;
     font-size: 25px;
     font-weight: 700;
+    padding-right: 10px;
     border: 2px solid black;
     border-radius: 15px;
     display: flex;

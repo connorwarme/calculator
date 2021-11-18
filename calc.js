@@ -38,10 +38,7 @@ numberButtons.forEach(function(part, index) {
     numberButtons[index].setAttribute("value", `${index}`);
     numberButtons[index].addEventListener('click', e => {
         numberString += `${e.target.value}`;
-        console.log(numberString);
- //       let roundedString = ((Math.round(numberString) * 100) / 100)
         displayValue = `${numberString}`;
-        console.log(displayValue);
         checkDecimal(displayValue);
         display.textContent = `${displayValue}`;
     })
@@ -117,8 +114,9 @@ backspace.addEventListener('click', e => {
     display.textContent = `${numberString}`;
 })
 // add keyboard support - still learning/working on it
-// const allowedKeyCodes = [61, 173, 88, 190, 191, 8, 13]
+const allowedKeyCodes = [61, 173, 88, 190, 191, 8, 13]
 // const checkChar = function(event) {
+//     console.log(event.returnValue);
 //     for (i=0; i<allowedKeyCodes.length; i++) {
 //         if (allowedKeyCodes[i] = event.keyCode) {
 //             event.returnValue = true;
@@ -130,3 +128,26 @@ backspace.addEventListener('click', e => {
 //         event.returnValue = false;
 //     }
 // }
+const numberKeys = function(e) {
+    if (e.key >= 0 && e.key <= 9) {
+        numberString += `${e.key}`;
+        displayValue = `${numberString}`;
+        checkDecimal(displayValue);
+        display.textContent = `${displayValue}`;
+//     } else if (e.key === / || e.key === x || e.key === - || e.key === +) {
+//         operatorValue = `${e.target.id}`;
+//         display.textContent = `${e.target.textContent}`;
+//         console.log(operatorValue);
+//         if (tally == ``) {
+//         firstValue = `${numberString}`;
+//         } else {
+//             firstValue = tally;
+//             let roundedTally = Math.round(tally * 100) / 100;
+//             display.textContent = `${roundedTally}`;
+//         };
+//         numberString = ``;
+//     }
+// }
+document.addEventListener('keydown', e => {
+    console.log(e.key);
+});
