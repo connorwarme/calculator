@@ -11,16 +11,16 @@ const divide = function (a, b) {
     return a / b;
 }
 const operate = function(z, a, b) {
-    if (z == `add`) {
+    if (z == `+`) {
         return add(a, b);
     }
-    if (z == `subtract`) {
+    if (z == `-`) {
         return subtract(a, b);
     }
-    if (z == `multiply`) {
+    if (z == `x`) {
         return multiply(a, b);
     }
-    if (z == `divide`) {
+    if (z == `/`) {
         return divide(a, b);
     } else {
         alert(`You must choose an operator!`);
@@ -31,6 +31,11 @@ let displayValue = ``;
 let firstValue = ``;
 let numberString = ``;
 let tally = ``;
+const numbersFn = function() {
+    displayValue = `${numberString}`;
+    checkDecimal(displayValue);
+    display.textContent = `${displayValue}`;
+}
 const display = document.querySelector('div.displaybox');
 const numberButtons = Array.from(document.querySelectorAll('button.numbers'));
 console.log(numberButtons);
@@ -38,9 +43,7 @@ numberButtons.forEach(function(part, index) {
     numberButtons[index].setAttribute("value", `${index}`);
     numberButtons[index].addEventListener('click', e => {
         numberString += `${e.target.value}`;
-        displayValue = `${numberString}`;
-        checkDecimal(displayValue);
-        display.textContent = `${displayValue}`;
+        numbersFn();
     })
 });
 // give operator buttons listener + display value
@@ -49,21 +52,11 @@ console.log(operators);
 let operatorValue = ``;
 operators.forEach(function(part, index) {
     operators[index].addEventListener('click', e => {
-        if (operatorValue !== `` && firstValue !== `` && numberString !== ``) {
-            tally = operate(operatorValue, Number(firstValue), Number(numberString));
-        } else {
-        };
+        checkValue();
         operatorValue = `${e.target.id}`;
         display.textContent = `${e.target.textContent}`;
         console.log(operatorValue);
-        if (tally == ``) {
-        firstValue = `${numberString}`;
-        } else {
-            firstValue = tally;
-            let roundedTally = Math.round(tally * 100) / 100;
-            display.textContent = `${roundedTally}`;
-        };
-        numberString = ``;
+        operatorFn();
     })
 });
 // give equals button listener + function + display
@@ -129,25 +122,42 @@ const allowedKeyCodes = [61, 173, 88, 190, 191, 8, 13]
 //     }
 // }
 const numberKeys = function(e) {
-    if (e.key >= 0 && e.key <= 9) {
         numberString += `${e.key}`;
-        displayValue = `${numberString}`;
-        checkDecimal(displayValue);
-        display.textContent = `${displayValue}`;
-//     } else if (e.key === / || e.key === x || e.key === - || e.key === +) {
-//         operatorValue = `${e.target.id}`;
-//         display.textContent = `${e.target.textContent}`;
-//         console.log(operatorValue);
-//         if (tally == ``) {
-//         firstValue = `${numberString}`;
-//         } else {
-//             firstValue = tally;
-//             let roundedTally = Math.round(tally * 100) / 100;
-//             display.textContent = `${roundedTally}`;
-//         };
-//         numberString = ``;
-//     }
-// }
-document.addEventListener('keydown', e => {
+        numbersFn();
+}
+const operatorFn = function() {
+    if (tally == ``) {
+    firstValue = `${numberString}`;
+    } else {
+        firstValue = tally;
+        let roundedTally = Math.round(tally * 100) / 100;
+        display.textContent = `${roundedTally}`;
+    };
+    numberString = ``;
+}
+
+const checkValue = function() {
+    if (operatorValue !== `` && firstValue !== `` && numberString !== ``) {
+        tally = operate(operatorValue, Number(firstValue), Number(numberString));
+    } else {
+    };
+}
+const operatorKeys = function(e) {
     console.log(e.key);
+        checkValue();
+        operatorValue = `${e.key}`;
+        display.textContent = `${e.key}`;
+        operatorFn();
+}
+document.addEventListener('keydown', e => {
+    if (e.key == '/') {
+        e.preventDefault();
+    }
+    console.log(e.key);
+    if (e.key >= 0 && e.key <= 9) {
+        numberKeys(e);
+    } 
+    else if (e.key == '/' || e.key == 'x' || e.key == '-' || e.key == '+') {
+        operatorKeys(e);
+    }
 });
