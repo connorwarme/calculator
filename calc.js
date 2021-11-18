@@ -57,6 +57,12 @@ const operatorFn = function() {
     };
     numberString = ``;
 }
+const checkValue = function() {
+    if (operatorValue !== `` && firstValue !== `` && numberString !== ``) {
+        tally = operate(operatorValue, Number(firstValue), Number(numberString));
+    } else {
+    };
+}
 const operators = Array.from(document.querySelectorAll('button.operators'));
 console.log(operators);
 let operatorValue = ``;
