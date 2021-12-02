@@ -139,7 +139,8 @@ const operatorKeys = function(e) {
         operatorFn();
 }
 document.addEventListener('keydown', e => {
-    if (e.key == '/') {
+    console.log(e.key);
+    if (e.key == '/' || e.key == 'Enter') {
         e.preventDefault();
     }
     if (e.key >= 0 && e.key <= 9) {
